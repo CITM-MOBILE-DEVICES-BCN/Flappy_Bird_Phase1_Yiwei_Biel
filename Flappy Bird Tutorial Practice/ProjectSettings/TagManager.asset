@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Logic
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Bird
+  - Water
+  - UI
+  - Background
+  - Pipes
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 395673899
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Bird
+    uniqueID: 64481971
+    locked: 0
+  - name: UI
+    uniqueID: 1220078243
+    locked: 0
+  - name: Pipes
+    uniqueID: 964260075
+    locked: 0
