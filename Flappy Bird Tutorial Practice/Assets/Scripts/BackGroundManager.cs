@@ -8,14 +8,15 @@ public class BackGroundManager : MonoBehaviour
 {
     public GameObject BackGround1;
     public GameObject BackGround2;
-    [SerializeField] private float scrollSpeed = -2.0f;
+    [SerializeField] private float scrollSpeed;
     private float tileSizeX = 8.0f;
     [SerializeField] private Vector3 startPosition1;
     [SerializeField] private Vector3 startPosition2;
 
     private void Start()
     {
-        
+        startPosition1 = BackGround1.transform.position;
+        startPosition2 = BackGround2.transform.position;
     }
 
     private void Update()
@@ -43,6 +44,8 @@ public class BackGroundManager : MonoBehaviour
             BackGround2.transform.position = startPosition1 + Vector3.right * tileSizeX;
             SwitchBackgrounds();
         }
+
+        
 
     }
 
