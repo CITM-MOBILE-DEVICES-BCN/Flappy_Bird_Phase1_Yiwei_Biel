@@ -15,6 +15,8 @@ public class LogicScript : MonoBehaviour
     {
         playerScore = playerScore + scoreToAdd;
         scoreText.text = "Score: " + playerScore;
+        
+        Debug.Log("Score: " + playerScore);
     }
 
     public void restartGame()

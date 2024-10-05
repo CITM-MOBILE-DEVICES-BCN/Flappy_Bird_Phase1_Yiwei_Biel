@@ -39,7 +39,7 @@ public class BirdScript : MonoBehaviour
     {
         logic.GameOver();
         birdIsAlive = false;
-        AudioManager.instance.PlaySoundFXClip(AudioManager.instance.hit, transform, 0.5f);
+        AudioManager.instance.PlaySoundFXClip(AudioManager.instance.hit, transform, 0.8f);
     }
 
     //if the player is out of bounds, the game is over
@@ -47,7 +47,7 @@ public class BirdScript : MonoBehaviour
     {
         logic.GameOver();
         birdIsAlive = false;
-        AudioManager.instance.PlaySoundFXClip(AudioManager.instance.die, transform, 0.5f);
+        AudioManager.instance.PlaySoundFXClip(AudioManager.instance.die, transform, 1.0f);
     }
 }
 
