@@ -46,6 +46,8 @@ public class BirdScript : MonoBehaviour
     private void OnBecameInvisible()
     {
         logic.GameOver();
+        birdIsAlive = false;
+        AudioManager.instance.PlaySoundFXClip(AudioManager.instance.die, transform, 0.5f);
     }
 }
 
