@@ -32,17 +32,18 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         PlayBackgroundMusic(backgroundMusic, transform, 0.5f);
+
     }
 
     private void PlayBackgroundMusic(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         AudioSource audioSource = Instantiate(backgroundMusicSource, spawnTransform.position, Quaternion.identity);
 
-        backgroundMusicSource.clip = backgroundMusic;
+        audioSource.clip = audioClip;
 
-        backgroundMusicSource.volume = volume;
+        audioSource.volume = volume;
 
-        backgroundMusicSource.Play();
+        audioSource.Play();
 
     }
 

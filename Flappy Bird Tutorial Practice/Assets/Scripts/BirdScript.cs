@@ -22,6 +22,8 @@ public class BirdScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true)
         {
             myRigidbody.velocity = Vector2.up * flapStrength;
+
+            AudioManager.instance.PlaySoundFXClip(AudioManager.instance.wing, transform, 0.5f);
         }
 
         // press ESC to quit the game
