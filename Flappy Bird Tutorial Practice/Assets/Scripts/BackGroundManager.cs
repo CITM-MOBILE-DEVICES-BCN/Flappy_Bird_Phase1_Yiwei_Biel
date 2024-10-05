@@ -6,8 +6,8 @@ using UnityEngine.UIElements;
 
 public class BackGroundManager : MonoBehaviour
 {
-    public GameObject BackGround1;
-    public GameObject BackGround2;
+    public GameObject backGround1;
+    public GameObject backGround2;
     [SerializeField] private float scrollSpeed;
     private float tileSizeX = 8.0f;
     [SerializeField] private Vector3 startPosition1;
@@ -15,8 +15,10 @@ public class BackGroundManager : MonoBehaviour
 
     private void Start()
     {
-        startPosition1 = BackGround1.transform.position;
-        startPosition2 = BackGround2.transform.position;
+        tileSizeX = backGround1.GetComponent<SpriteRenderer>().bounds.size.x;
+
+        startPosition1 = backGround1.transform.position;
+        startPosition2 = backGround2.transform.position;
     }
 
     private void Update()
@@ -28,20 +30,29 @@ public class BackGroundManager : MonoBehaviour
     private void InfiniteScroll()
     {
         // Move both backgrounds to the left
-        BackGround1.transform.position += Vector3.right * scrollSpeed * Time.deltaTime;
-        BackGround2.transform.position += Vector3.right * scrollSpeed * Time.deltaTime;
+        backGround1.transform.position += Vector3.right * scrollSpeed * Time.deltaTime;
+        backGround2.transform.position += Vector3.right * scrollSpeed * Time.deltaTime;
 
-        // Check if the first background has moved completely out of view
-        if (BackGround1.transform.position.x < -tileSizeX)
+        // Reposition BackGround1 if it has moved off screen
+        if (backGround1.transform.position.x <= -tileSizeX)
         {
-            BackGround1.transform.position = startPosition2 + Vector3.right * tileSizeX;
+            backGround1.transform.position = new Vector3(
+                backGround2.transform.position.x + tileSizeX,
+                backGround1.transform.position.y,
+                backGround1.transform.position.z
+            );
+
             SwitchBackgrounds();
         }
 
-        // Check if the second background has moved completely out of view
-        else if (BackGround2.transform.position.x < -tileSizeX)
+        // Reposition BackGround2 if it has moved off screen
+        else if (backGround2.transform.position.x <= -tileSizeX)
         {
-            BackGround2.transform.position = startPosition1 + Vector3.right * tileSizeX;
+            backGround2.transform.position = new Vector3(
+                backGround1.transform.position.x + tileSizeX,
+                backGround2.transform.position.y,
+                backGround2.transform.position.z
+            );
             SwitchBackgrounds();
         }
 
@@ -51,9 +62,9 @@ public class BackGroundManager : MonoBehaviour
 
     private void SwitchBackgrounds()
     {
-        GameObject temp = BackGround1;
-        BackGround1 = BackGround2;
-        BackGround2 = temp;
+        GameObject temp = backGround1;
+        backGround1 = backGround2;
+        backGround2 = temp;
         Vector3 tempPos = startPosition1;
         startPosition1 = startPosition2;
         startPosition2 = tempPos;
