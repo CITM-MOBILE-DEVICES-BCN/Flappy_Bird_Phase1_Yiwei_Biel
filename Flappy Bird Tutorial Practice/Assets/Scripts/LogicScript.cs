@@ -21,12 +21,16 @@ public class LogicScript : MonoBehaviour
 
     public void restartGame()
     {
+        gameoverScreen = null;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void GameOver()
     {
-        gameoverScreen.SetActive(true);
+        if(gameoverScreen != null)
+        {
+            gameoverScreen.SetActive(true);
+        }
         Debug.Log("Game Over!");
     }
 
