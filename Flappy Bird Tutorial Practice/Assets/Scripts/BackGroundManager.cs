@@ -8,6 +8,10 @@ public class BackGroundManager : MonoBehaviour
 {
     public GameObject backGround1;
     public GameObject backGround2;
+
+    public GameObject[] backgrounds;
+    private Vector2 resetPosition;
+
     [SerializeField] private float scrollSpeed;
     private float tileSizeX = 8.0f;
     [SerializeField] private Vector3 startPosition1;
@@ -16,6 +20,8 @@ public class BackGroundManager : MonoBehaviour
     private void Start()
     {
         tileSizeX = backGround1.GetComponent<SpriteRenderer>().bounds.size.x;
+
+        resetPosition = backgrounds[1].transform.position;
 
         startPosition1 = backGround1.transform.position;
         startPosition2 = backGround2.transform.position;
@@ -32,6 +38,18 @@ public class BackGroundManager : MonoBehaviour
         // Move both backgrounds to the left
         backGround1.transform.position += Vector3.right * scrollSpeed * Time.deltaTime;
         backGround2.transform.position += Vector3.right * scrollSpeed * Time.deltaTime;
+
+        //foreach (GameObject background in backgrounds)
+        //{
+        //    background.transform.position += Vector3.right * scrollSpeed * Time.deltaTime;
+
+        //    if (background.transform.position.x <= -19.71)
+        //    {
+        //        background.transform.position = resetPosition;
+
+        //    }
+        //}
+
 
         // Reposition BackGround1 if it has moved off screen
         if (backGround1.transform.position.x <= -tileSizeX)
@@ -56,7 +74,7 @@ public class BackGroundManager : MonoBehaviour
             SwitchBackgrounds();
         }
 
-        
+
 
     }
 
