@@ -30,6 +30,11 @@ public class LogicScript : MonoBehaviour
         Debug.Log("Game Over!");
     }
 
+    public void GoBackMenu()
+    {
+        SceneManager.LoadScene(0);
+
+    }
    
 }
 
