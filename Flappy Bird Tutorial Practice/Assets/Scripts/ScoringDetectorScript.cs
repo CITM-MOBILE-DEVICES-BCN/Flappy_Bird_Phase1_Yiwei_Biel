@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ScoringDetectorScript : MonoBehaviour
 {
-    public GameStateScript logic;
+    public GameStateScript state;
 
     AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameStateScript>();
+        state = GameObject.FindGameObjectWithTag("State").GetComponent<GameStateScript>();
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
@@ -27,7 +27,7 @@ public class ScoringDetectorScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            logic.addScore(1);
+            state.addScore(1);
 
             audioManager.PlaySoundFXClip(audioManager.point, transform, 0.5f);
             

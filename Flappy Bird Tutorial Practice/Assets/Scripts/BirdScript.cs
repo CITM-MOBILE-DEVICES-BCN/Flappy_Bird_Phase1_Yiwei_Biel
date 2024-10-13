@@ -6,13 +6,13 @@ public class BirdScript : MonoBehaviour
 { 
     public Rigidbody2D myRigidbody;
     public float flapStrength;
-    public GameStateScript logic; 
+    public GameStateScript state; 
     
     public bool birdIsAlive = true;
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameStateScript>();
+        state = GameObject.FindGameObjectWithTag("State").GetComponent<GameStateScript>();
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class BirdScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        logic.GameOver();
+        state.GameOver();
         birdIsAlive = false;
         AudioManager.instance.PlaySoundFXClip(AudioManager.instance.hit, transform, 0.8f);
     }
@@ -45,9 +45,9 @@ public class BirdScript : MonoBehaviour
     //if the player is out of bounds, the game is over
     private void OnBecameInvisible()
     {
-        if(logic != null && birdIsAlive == true)
+        if(state != null && birdIsAlive == true)
         {
-            logic.GameOver();
+            state.GameOver();
             birdIsAlive = false;
             AudioManager.instance.PlaySoundFXClip(AudioManager.instance.die, transform, 1.0f);
         }
