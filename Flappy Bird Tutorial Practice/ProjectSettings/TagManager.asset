@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Logic
   - Audio
+  - State
   layers:
   - Default
   - TransparentFX

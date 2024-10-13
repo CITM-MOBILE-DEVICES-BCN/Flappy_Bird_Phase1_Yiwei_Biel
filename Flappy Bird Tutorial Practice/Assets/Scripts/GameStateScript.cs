@@ -65,9 +65,15 @@ public class GameStateScript : MonoBehaviour
         OnGamePaused?.Invoke(isPaused);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game Quit");
+    }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePause();
         }
