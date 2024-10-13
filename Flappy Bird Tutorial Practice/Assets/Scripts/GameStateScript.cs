@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LogicScript : MonoBehaviour
+public class GameStateScript : MonoBehaviour
 {
     public int playerScore;
     public Text scoreText;

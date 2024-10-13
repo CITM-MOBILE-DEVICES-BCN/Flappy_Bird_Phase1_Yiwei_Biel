@@ -716,7 +716,7 @@ GameObject:
   - component: {fileID: 463820070}
   - component: {fileID: 463820069}
   m_Layer: 0
-  m_Name: Logic Manager
+  m_Name: GameStateManager
   m_TagString: Logic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

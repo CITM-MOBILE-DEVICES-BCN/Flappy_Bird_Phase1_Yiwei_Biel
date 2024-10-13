@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ScoringDetectorScript : MonoBehaviour
 {
-    public LogicScript logic;
+    public GameStateScript logic;
 
     AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<GameStateScript>();
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
