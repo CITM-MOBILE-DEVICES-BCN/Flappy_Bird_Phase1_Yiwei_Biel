@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using System.Runtime.CompilerServices;
 
 public class GameStateScript : MonoBehaviour
 {
     public int playerScore;
     public Text scoreText;
     public GameObject gameoverScreen;
+    public GameObject pauseScreen;
+
+    public static event Action<bool> OnGamePaused;
+
+    private bool isPaused = false;
 
     [ContextMenu("Increment Score")]
     public void addScore(int scoreToAdd)
@@ -36,9 +43,37 @@ public class GameStateScript : MonoBehaviour
 
     public void GoBackMenu()
     {
+
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
 
     }
-   
+
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        if(isPaused)
+        {
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseScreen.SetActive(false);
+        }
+        OnGamePaused?.Invoke(isPaused);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            TogglePause();
+        }
+    }
+
 }
+
+
 
