@@ -9,15 +9,25 @@ public class BirdScript : MonoBehaviour
     public GameStateScript state; 
     
     public bool birdIsAlive = true;
+    private bool isGamePaused = false;
     // Start is called before the first frame update
     void Start()
     {
         state = GameObject.FindGameObjectWithTag("State").GetComponent<GameStateScript>();
+        GameStateScript.OnGamePaused += HandlePause;
+    }
+
+    private void OnDestroy()
+    {
+        GameStateScript.OnGamePaused -= HandlePause;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isGamePaused) return;
+
+
         //if the player presses the space key
         if(Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true)
         {
@@ -33,6 +43,20 @@ public class BirdScript : MonoBehaviour
         }
 
 
+    }
+
+    private void HandlePause(bool isPaused)
+    {
+        isGamePaused = isPaused;
+        if(isGamePaused)
+        {
+            myRigidbody.velocity = Vector2.zero;
+            myRigidbody.simulated = false;
+        }
+        else
+        {
+            myRigidbody.simulated = true;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

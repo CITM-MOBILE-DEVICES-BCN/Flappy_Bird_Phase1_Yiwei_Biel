@@ -11,7 +11,7 @@ public class GameStateScript : MonoBehaviour
     public int playerScore;
     public Text scoreText;
     public GameObject gameoverScreen;
-    public GameObject pauseScreen;
+    [SerializeField] private GameObject pauseScreen;
 
     public static event Action<bool> OnGamePaused;
 
