@@ -29,19 +29,12 @@ public class BirdScript : MonoBehaviour
 
 
         //if the player presses the space key
-        if(Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true)
+        if(Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true && isGamePaused == false)
         {
             myRigidbody.velocity = Vector2.up * flapStrength;
 
             AudioManager.instance.PlaySoundFXClip(AudioManager.instance.wing, transform, 0.5f);
         }
-
-        // press ESC to quit the game
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
 
     }
 
