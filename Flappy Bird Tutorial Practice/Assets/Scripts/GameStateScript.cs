@@ -29,12 +29,14 @@ public class GameStateScript : MonoBehaviour
     public void StartState()
     {
         Time.timeScale = 0;
+        StartScreen.SetActive(true);
     }
 
 
    public void StartGame()
     {
         Time.timeScale = 1;
+        StartScreen.SetActive(false);
     }
 
     public void AddScore(int scoreToAdd)
