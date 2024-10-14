@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource backgroundMusicSource;
     [SerializeField] private AudioSource sfxSource;
+   
 
     [Header("---------- Audio Clips ----------")]
     public AudioClip backgroundMusic;
@@ -16,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip hit;
     public AudioClip die;
     public AudioClip wing;
+
 
     private void Awake()
     {
@@ -63,7 +66,7 @@ public class AudioManager : MonoBehaviour
     }
 
     
-
+    
 
 
 }
