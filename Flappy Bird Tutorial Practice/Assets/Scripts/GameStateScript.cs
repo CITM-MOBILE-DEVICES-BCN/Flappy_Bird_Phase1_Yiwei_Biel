@@ -11,20 +11,41 @@ public class GameStateScript : MonoBehaviour
     public int playerScore;
     public Text scoreText;
     public GameObject gameoverScreen;
-    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject PauseScreen;
+    [SerializeField] private GameObject StartScreen;
 
     public static event Action<bool> OnGamePaused;
 
     private bool isPaused = false;
+ 
 
     [ContextMenu("Increment Score")]
-    public void addScore(int scoreToAdd)
+
+    private void Start()
+    {
+         StartState();
+    }
+
+    public void StartState()
+    {
+        Time.timeScale = 0;
+    }
+
+
+   public void StartGame()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void AddScore(int scoreToAdd)
     {
         playerScore = playerScore + scoreToAdd;
         scoreText.text = "Score: " + playerScore;
         
         Debug.Log("Score: " + playerScore);
     }
+
+   
 
     public void restartGame()
     {
@@ -38,7 +59,7 @@ public class GameStateScript : MonoBehaviour
         {
             gameoverScreen.SetActive(true);
             Debug.Log("Game Over!");
-            Invoke("GoBackMenu", 3f);
+            Invoke("restartGame", 3f);
         }
     }
 
@@ -56,12 +77,12 @@ public class GameStateScript : MonoBehaviour
         if(isPaused)
         {
             Time.timeScale = 0;
-            pauseScreen.SetActive(true);
+            PauseScreen.SetActive(true);
         }
         else
         {
             Time.timeScale = 1;
-            pauseScreen.SetActive(false);
+            PauseScreen.SetActive(false);
         }
         OnGamePaused?.Invoke(isPaused);
         Debug.Log("PauseStateToggled");
@@ -79,6 +100,11 @@ public class GameStateScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && gameoverScreen.activeSelf == false)
         {
             TogglePause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && gameoverScreen.activeSelf == false)
+        {
+            StartGame();
         }
     }
 

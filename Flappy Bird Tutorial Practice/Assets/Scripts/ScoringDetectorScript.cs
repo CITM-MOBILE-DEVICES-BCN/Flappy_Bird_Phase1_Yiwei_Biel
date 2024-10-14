@@ -27,7 +27,7 @@ public class ScoringDetectorScript : MonoBehaviour
     {
         if (collision.gameObject.layer == 3)
         {
-            state.addScore(1);
+            state.AddScore(1);
 
             audioManager.PlaySoundFXClip(audioManager.point, transform, 0.5f);
             

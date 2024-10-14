@@ -949,7 +949,8 @@ MonoBehaviour:
   playerScore: 0
   scoreText: {fileID: 1535404309}
   gameoverScreen: {fileID: 419971058}
-  pauseScreen: {fileID: 645764443}
+  PauseScreen: {fileID: 0}
+  StartScreen: {fileID: 0}
 --- !u!4 &463820070
 Transform:
   m_ObjectHideFlags: 0
