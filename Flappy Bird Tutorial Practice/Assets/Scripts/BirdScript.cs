@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BirdScript : MonoBehaviour
-{ 
+{
     public Rigidbody2D myRigidbody;
     public float flapStrength;
-    public GameStateScript state; 
-    
+    public GameStateScript state;
+
     public bool birdIsAlive = true;
     private bool isGamePaused = false;
     // Start is called before the first frame update
@@ -27,9 +28,8 @@ public class BirdScript : MonoBehaviour
     {
         if (isGamePaused) return;
 
-
         //if the player presses the space key
-        if(Input.GetKeyDown(KeyCode.Space) == true && birdIsAlive == true && isGamePaused == false)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((int)MouseButton.Left)) && birdIsAlive && !isGamePaused)
         {
             myRigidbody.velocity = Vector2.up * flapStrength;
 
@@ -41,7 +41,7 @@ public class BirdScript : MonoBehaviour
     private void HandlePause(bool isPaused)
     {
         isGamePaused = isPaused;
-        if(isGamePaused)
+        if (isGamePaused)
         {
             myRigidbody.velocity = Vector2.zero;
             myRigidbody.simulated = false;
@@ -62,7 +62,7 @@ public class BirdScript : MonoBehaviour
     //if the player is out of bounds, the game is over
     private void OnBecameInvisible()
     {
-        if(state != null && birdIsAlive == true)
+        if (state != null && birdIsAlive == true)
         {
             state.GameOver();
             birdIsAlive = false;

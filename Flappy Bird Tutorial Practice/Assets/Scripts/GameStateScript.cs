@@ -29,7 +29,7 @@ public class GameStateScript : MonoBehaviour
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
+        Debug.Log("Game Restarted");
     }
 
     public void GameOver()
@@ -46,7 +46,7 @@ public class GameStateScript : MonoBehaviour
 
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
-
+        Debug.Log("Back to Menu");
     }
 
     public void TogglePause()
@@ -63,6 +63,7 @@ public class GameStateScript : MonoBehaviour
             pauseScreen.SetActive(false);
         }
         OnGamePaused?.Invoke(isPaused);
+        Debug.Log("PauseStateToggled");
     }
 
     public void QuitGame()
