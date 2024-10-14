@@ -30,6 +30,7 @@ public class GameStateScript : MonoBehaviour
     {
         Time.timeScale = 0;
         StartScreen.SetActive(true);
+        Debug.Log("In Start State");
     }
 
 
@@ -37,6 +38,7 @@ public class GameStateScript : MonoBehaviour
     {
         Time.timeScale = 1;
         StartScreen.SetActive(false);
+        Debug.Log("Game Started");
     }
 
     public void AddScore(int scoreToAdd)
@@ -63,14 +65,6 @@ public class GameStateScript : MonoBehaviour
             Debug.Log("Game Over!");
             Invoke("restartGame", 3f);
         }
-    }
-
-    public void GoBackMenu()
-    {
-
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
-        Debug.Log("Back to Menu");
     }
 
     public void TogglePause()
