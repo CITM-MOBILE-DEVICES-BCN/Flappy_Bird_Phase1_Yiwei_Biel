@@ -38,6 +38,7 @@ public class GameStateScript : MonoBehaviour
         {
             gameoverScreen.SetActive(true);
             Debug.Log("Game Over!");
+            Invoke("GoBackMenu", 3f);
         }
     }
 
