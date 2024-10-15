@@ -15,9 +15,11 @@ public class GameStateScript : MonoBehaviour
     [SerializeField] private GameObject StartScreen;
 
     public static event Action<bool> OnGamePaused;
+    public static event Action<bool> OnGameStartState;
 
     private bool isPaused = false;
- 
+    
+
 
     [ContextMenu("Increment Score")]
 
@@ -30,6 +32,7 @@ public class GameStateScript : MonoBehaviour
     {
         Time.timeScale = 0;
         StartScreen.SetActive(true);
+        OnGameStartState?.Invoke(true);
         Debug.Log("In Start State");
     }
 
@@ -38,6 +41,7 @@ public class GameStateScript : MonoBehaviour
     {
         Time.timeScale = 1;
         StartScreen.SetActive(false);
+        OnGameStartState?.Invoke(false);
         Debug.Log("Game Started");
     }
 
@@ -74,6 +78,7 @@ public class GameStateScript : MonoBehaviour
         {
             Time.timeScale = 0;
             PauseScreen.SetActive(true);
+
         }
         else
         {

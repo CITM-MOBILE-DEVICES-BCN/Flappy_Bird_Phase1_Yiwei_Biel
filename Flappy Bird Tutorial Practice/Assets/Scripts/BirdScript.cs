@@ -11,30 +11,27 @@ public class BirdScript : MonoBehaviour
 
     public bool birdIsAlive = true;
     private bool isGamePaused = false;
+    private bool isGameInStartState = false;
     // Start is called before the first frame update
     void Start()
     {
         state = GameObject.FindGameObjectWithTag("State").GetComponent<GameStateScript>();
         GameStateScript.OnGamePaused += HandlePause;
+        GameStateScript.OnGameStartState += HandleStartState;
+
     }
 
     private void OnDestroy()
     {
         GameStateScript.OnGamePaused -= HandlePause;
+        GameStateScript.OnGameStartState -= HandleStartState;
     }
 
     // Update is called once per frame
     void Update()
     {
         if (isGamePaused) return;
-
-        //if the player presses the space key
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((int)MouseButton.Left)) && birdIsAlive && !isGamePaused)
-        {
-            myRigidbody.velocity = Vector2.up * flapStrength;
-
-            AudioManager.instance.PlaySoundFXClip(AudioManager.instance.wing, transform, 0.5f);
-        }
+        PlayerController();
 
     }
 
@@ -49,6 +46,27 @@ public class BirdScript : MonoBehaviour
         else
         {
             myRigidbody.simulated = true;
+        }
+    }
+
+    private void HandleStartState(bool isInStartState)
+    {
+        isGameInStartState = isInStartState;
+    }
+
+
+    public void PlayerController()
+    {
+        
+        //if the player presses the space key
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown((int)MouseButton.Left)) && birdIsAlive && !isGamePaused)
+        {
+            myRigidbody.velocity = Vector2.up * flapStrength;
+            if(!isGameInStartState)
+            {
+                AudioManager.instance.PlaySoundFXClip(AudioManager.instance.wing, transform, 0.5f);
+            }
+            
         }
     }
 
